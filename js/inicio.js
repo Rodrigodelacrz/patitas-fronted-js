@@ -39,9 +39,7 @@ function ocultarAlerta() {
     msgError.innerHTML = '';
     msgError.style.display = 'none';
 }
-
 async function autenticar() {
-
     const url = 'http://localhost:8082/login/autenticar-async';
     const request = {
         tipoDocumento: tipoDocumento.value,
@@ -50,7 +48,6 @@ async function autenticar() {
     };
 
     try {
-        
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -59,7 +56,7 @@ async function autenticar() {
             body: JSON.stringify(request)
         });
 
-        if(!response.ok) {
+        if (!response.ok) {
             mostrarAlerta('Error: Ocurrió un problema con la autenticación');
             throw new Error(`Error: ${response.statusText}`);
         }
@@ -68,26 +65,22 @@ async function autenticar() {
         const result = await response.json();
         console.log('Respuesta del servidor: ', result);
 
-        if(result.codigo === '00') {
+        if (result.codigo === '00') {
+            // Guardar tipoDocumento y numeroDocumento en localStorage
+            localStorage.setItem('tipoDocumento', request.tipoDocumento);
+            localStorage.setItem('numeroDocumento', request.numeroDocumento);
+            
+            // Guarda la respuesta completa si es necesario
             localStorage.setItem('result', JSON.stringify(result));
+            
+            // Redirigir a principal.html
             window.location.replace('principal.html');
         } else {
             mostrarAlerta(result.mensaje);
         }
 
     } catch (error) {
-        
-        console.log('Error: Ocurrió un problema con la autenticación', error);
-        mostrarAlerta('Error: Ocurrió un problema con la autenticación');
-
+        console.log('Error: Ocurrió un problema', error);
+        mostrarAlerta('Error: Ocurrió un problema');
     }
-
 }
-
-
-/**
- * Se ejecuta cuando la pagina ha cargado completamente (DOM, CSS, Images, etc...)
- * En caso desees ejecutar el JS a penas se haya cargado el DOM, puedes usar 2 técnicas secretas:
- * -> document.addEventListener('DOMContentLoaded', {});
- * -> <script type="module" src="js/inicio.js" defer></script>
- */

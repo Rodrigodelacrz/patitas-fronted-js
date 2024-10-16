@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>Patitas - Adopta una mascota</title>
@@ -8,8 +9,11 @@
     <link rel="stylesheet" href="css/principal.css">
     <script type="module" src="js/principal.js"></script>
 </head>
+
 <body>
+
     <div class="container">
+
         <div class="mt-5 mb-4">
             <h1>Home</h1>
         </div>
@@ -17,19 +21,18 @@
         <div id="msgSuccess" class="alert alert-success" role="success" style="display: none;">
             <span>Texto de prueba</span>
         </div>
-        
-        <div id="msgError" class="alert alert-danger" role="alert" style="display: none;">
-            <span>Texto de error</span>
-        </div>
 
         <div class="mb-3">
             <div class="list-group list-group-horizontal">
                 <a href="#" class="list-group-item list-group-item-action active">Home</a>
                 <a href="#" class="list-group-item list-group-item-action">Ver mascotas</a>
                 <a href="#" class="list-group-item list-group-item-action">Hacer donación</a>
-                <a href="#" class="list-group-item list-group-item-action" id="logoutBtn">Cerrar sesión</a>
+                <button id="btnCerrarSesion" class="btn btn-danger">Cerrar Sesión</button>
             </div>
         </div>
+
     </div>
+
 </body>
+
 </html>
